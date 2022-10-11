@@ -25,16 +25,19 @@ function App() {
     [filter, robotData]
   );
 
-  const addRobotHandler = useCallback(({ name, purpose }: IRobot) => {
-    setRobotData((prevData) => [
-      {
-        id: cuid(),
-        name,
-        purpose,
-      },
-      ...prevData,
-    ]);
-  }, []);
+  const addRobotHandler = useCallback(
+    ({ name, purpose }: IRobot) => {
+      setRobotData((prevData) => [
+        {
+          id: cuid(),
+          name,
+          purpose,
+        },
+        ...prevData,
+      ]);
+    },
+    [setRobotData]
+  );
 
   const editRobotHandler = useCallback(
     (robotParam: IRobot) => {
@@ -61,7 +64,7 @@ function App() {
 
   return (
     <main className="mx-auto w-full md:w-11/12 lg:w-3/5 py-8 px-4 relative">
-      <h1 className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-700 mb-2">
+      <h1 className="text-4xl font-bold text-center text-gray-900 mb-2">
         Robodeck
       </h1>
       <SearchInput filter={filter} setFilter={setFilter} />
